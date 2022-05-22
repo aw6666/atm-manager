@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DAO.BankCardDAO">
+    <select id="getNum" resultType="Integer">
+        select count(*) from bankcardInfo where Unum=#{Unum}
+    </select>
+    <select id="showInfo" resultType="entity.BankCard">
+        select * from bankcardInfo where CardID=#{CardID}
+    </select>
+    <select id="createCard" resultType="String">
+        call createCard(#{Unum},#{pw},#{money})
+    </select>
+    <update id="saveMoney">
+        call saveMoney(#{CardID},#{money})
+    </update>
+    <select id="getMoney" resultType="int">
+        call getMoney(#{CardID},#{money})
+    </select>
+    <select id="transfer" resultType="int">
+        call transfer(#{CardIDOne},#{CardIDTwo},#{money})
+    </select>
+</mapper>
